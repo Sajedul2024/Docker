@@ -29,7 +29,7 @@ services:
       WORDPRESS_DB_NAME: "db"
     volumes:
       - /f/Sites/mia:/var/www/html
-    networks:
-      - occms
-      - ocdb
+networks:
+  wordpress_network:
+    driver: bridge
 
