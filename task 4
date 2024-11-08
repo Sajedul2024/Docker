@@ -1,0 +1,35 @@
+version: '3.3'
+services:
+  db:
+    image: mysql:8.0
+    container_name: mysql
+    restart: always
+    environment:
+      MYSQL_DATABASE: 'db'     
+      MYSQL_USER: 'sa'    
+      MYSQL_PASSWORD: '1234'    
+      MYSQL_ROOT_PASSWORD: '1234'
+     ports:
+      - "3306:3306"
+    volumes:
+      - db_data:/var/lib/mysql
+
+####################################################################################
+services:
+  wordpress:
+    image: wordpress:latest
+    restart: unless-stopped
+      ports:
+      - "80:80"
+    restart: always
+ environment:
+      WORDPRESS_DB_HOST: mysql
+      WORDPRESS_DB_USER: "sa"
+      WORDPRESS_DB_PASSWORD: "1234"
+      WORDPRESS_DB_NAME: "db"
+    volumes:
+      - /f/Sites/mia:/var/www/html
+    networks:
+      - occms
+      - ocdb
+
