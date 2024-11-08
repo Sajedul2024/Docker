@@ -1,0 +1,17 @@
+FROM node
+
+WORKDIR /react
+
+COPY package*.json ./
+RUN rm -rf n_mod
+
+RUN npm install
+
+COPY . .
+
+RUN npm run build
+
+EXPOSE 2000
+
+RUN npm install -g serve
+CMD ["serve", "-s", "build", "-l", "2000"]
