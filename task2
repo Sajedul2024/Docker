@@ -1,0 +1,10 @@
+sudo mkdir /vol 
+FROM nginx:1.27.2-alpine-slim
+WORKDIR vol
+COPY  . .
+EXPOSE 9090
+
+FROM nginx:1.27.2-alpine-slim
+WORKDIR vol
+COPY  . .
+EXPOSE 8080
